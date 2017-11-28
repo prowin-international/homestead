@@ -72,11 +72,11 @@ then
         subjectAltName = @alternate_names
         [ alternate_names ]
         DNS.1 = $1
-      "
-      echo "$block" > $PATH_req_CNF
-
-      openssl genrsa -out "$PATH_KEY" 2048 2>/dev/null
-      openssl req -new -x509 -config "$PATH_req_CNF" -out "$PATH_CRT" -days 365 2>/dev/null
-    fi
+        DNS.2 = *.$1
+    "
+    echo "$block" > $PATH_req_CNF
+	
+	openssl genrsa -out "$PATH_KEY" 2048 2>/dev/null
+    openssl req -new -x509 -config "$PATH_req_CNF" -out "$PATH_CRT" -days 365 2>/dev/null
 
 fi
